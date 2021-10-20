@@ -1,0 +1,24 @@
+{
+    "name": "myhayo/branch-sdk",
+    "description": "myhayo php sdk of branch-server",
+    "type": "library",
+    "homepage": "https://github.com/myhayo/branch-sdk",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "fdw",
+            "email": "fengdongwei@myhayo.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "laravel/framework": "~5.5",
+        "guzzlehttp/guzzle": "^6.4",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Myhayo\\Branch\\": "src/"
+        }
+    }
+}
