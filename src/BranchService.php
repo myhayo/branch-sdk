@@ -40,6 +40,13 @@ class BranchService
     {
     }
 
+    /**
+     * 获取配置信息
+     *
+     * @param $key
+     *
+     * @return mixed|null
+     */
     protected function getConfig($key)
     {
         if (empty($this->config)) {
@@ -49,6 +56,13 @@ class BranchService
         return $this->config[$key] ?? null;
     }
 
+    /**
+     * 获取请求url
+     *
+     * @param $q
+     *
+     * @return string
+     */
     protected function getUrl($q): string
     {
         $service = $this->getConfig('service');
@@ -57,6 +71,13 @@ class BranchService
         return "{$service}api/v1/open/{$access_id}/{$q}";
     }
 
+    /**
+     * 获取参数
+     *
+     * @param $params
+     *
+     * @return array
+     */
     protected function getParams($params): array
     {
         $access_key = $this->getConfig('access_key');
@@ -72,6 +93,7 @@ class BranchService
      * @param array $device
      *
      * @return mixed|null
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function init(array $device = [])
     {
@@ -165,6 +187,7 @@ class BranchService
      * @param array|null $params
      *
      * @return array|mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     protected function postRequest(string $url, array $params = null)
     {
