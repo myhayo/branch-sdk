@@ -28,6 +28,7 @@ BRANCH_SKD_ACCESS_KEY:此项目对应的 Access Key
 最后，就可以愉快的使用了
 
 ### 设备信息字段
+
 ```
  字段         类型   说明
  os          int    系统类型: 1 Android, 2 iOS
@@ -46,6 +47,17 @@ BRANCH_SKD_ACCESS_KEY:此项目对应的 Access Key
  ch          string 渠道
 ```
 
+### 设备行为
+
+```
+// 设备行为 - 激活
+const DEVICE_ACTION_ACTIVATE_APP = 0;
+// 设备行为 - 注册
+const DEVICE_ACTION_PURCHASE = 1;
+// 设备行为 - 次日留存
+const DEVICE_ACTION_START_APP = 2;
+```
+
 FUNCTIONS
 ---
 
@@ -53,25 +65,33 @@ FUNCTIONS
 
 ```
 $branch = new BranchService();
-$ret_init = $branch->init($device);  
+$ret_init = $branch->init($device);
+// $ret_init 数组 ['uuid' => 设备uuid]   
 ```
 
 - 上报
+
 ```
 $branch = new BranchService();
-$ret_init = $branch->report(
+$ret = $branch->report(
     $uuid, // 上报返回的uuid
     BranchService::DEVICE_ACTION_ACTIVATE_APP, // 设备行为
     [], // 设备行为参数
     $device 
-    );  
+    ); 
+// $ret null|array 目前为一个空数组 标识上报成功    
+     
 ```
 
 - 行为上报成功回调处理
+
 ```
 $branch = new BranchService();
-$branch->callback(request(), function ($uuid, $action, $channel) {
+$branch->callback(request(), function (string $uuid, array $action, array $channel) {
     // TODO 处理
+    $uuid 设备uuid
+    $action 行为数据 ['action_type' => 行为类型, 'action_param'=> 行为参数]
+    $channel 渠道信息 ['channel_id' => 渠道id, 'channel_key'=> 渠道标识, 'channel_name' => 渠道名称]
     
 });
 
