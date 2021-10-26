@@ -119,6 +119,7 @@ class BranchService
      * @return mixed|null
      * @throws EmptyUuidException
      * @throws InvalidDeviceActionException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function report($uuid, $action_type, $action_param, $device)
     {
@@ -137,6 +138,27 @@ class BranchService
         $device['action_param'] = $action_param;
 
         $result = $this->postRequest($url, $device);
+
+        if (empty($result) || $result['code'] != 0) {
+            return null;
+        }
+
+        return $result['data'];
+    }
+
+    /**
+     * 获取渠道信息
+     *
+     * @param $uuid
+     *
+     * @return mixed|null
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function channel($uuid)
+    {
+        $url = $this->getUrl('channel');
+
+        $result = $this->postRequest($url, ['uuid' => $uuid]);
 
         if (empty($result) || $result['code'] != 0) {
             return null;

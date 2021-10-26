@@ -69,6 +69,14 @@ $ret_init = $branch->init($device);
 // $ret_init 数组 ['uuid' => 设备uuid]   
 ```
 
+- 渠道:
+
+```
+$branch = new BranchService();
+$channel = $branch->channel($uuid);
+// $channel 数组 ['channel' => ['channel_id' => 渠道id, 'channel_key'=> 渠道标识]]
+```
+
 - 上报
 
 ```
