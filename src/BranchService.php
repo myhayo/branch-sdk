@@ -24,13 +24,13 @@ class BranchService
     // 设备行为 - 激活
     const DEVICE_ACTION_ACTIVATE_APP = 0;
     // 设备行为 - 注册
-    const DEVICE_ACTION_PURCHASE = 1;
+    const DEVICE_ACTION_REGISTER = 1;
     // 设备行为 - 次日留存
     const DEVICE_ACTION_START_APP = 2;
 
     const DEVICE_ACTIONS = [
         self::DEVICE_ACTION_ACTIVATE_APP => '激活',
-        self::DEVICE_ACTION_PURCHASE     => '注册',
+        self::DEVICE_ACTION_REGISTER     => '注册',
         self::DEVICE_ACTION_START_APP    => '次日留存',
     ];
 
